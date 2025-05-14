@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks.Dataflow;
 
 class Program
 {
@@ -33,7 +34,6 @@ class Program
     }
     static void DisplayResult(string name, int square)
     {
-        Console.WriteLine($"{name}, the quare of your number is {square}");
 
-    }   
+    }
 }
