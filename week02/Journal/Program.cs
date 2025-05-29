@@ -4,70 +4,94 @@ using System.Reflection.Metadata.Ecma335;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
+using System.Xml.Serialization;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Entry prompt = new Entry();
-        prompt._promptText = "Who was the most interesting person I interacted with today?";
-        prompt._promptText = "What was the best part of my day? ";
-        prompt._promptText = "How did I see the hand of the Lord in my life today? ";
-        prompt._promptText = "What was the strongest emotion I felt today? ";
-        prompt._promptText = "If I had one thing I could do over today, what would it be? ";
+       
+       
 
-        
-        
 
-        PromptGenerator mypromptGenerator = new PromptGenerator();
-        mypromptGenerator._prompts.Add(prompt);
-        mypromptGenerator.GetRandomPrompt();
+        Journal journal = new Journal();
+        PromptGenerator promptGenerator = new PromptGenerator();
 
-        
-        Console.WriteLine("Welcome to the journal program.");
-        int userChoice = 0;
-        while (userChoice != 5)
-
+        while (true)
         {
-
+            Console.WriteLine("Welcome to the journal program.");
             Console.WriteLine("Please select one of the following choices: ");
             Console.WriteLine("1. write");
             Console.WriteLine("2. Display");
-
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
-
+            Console.WriteLine("3. Save");
+            Console.WriteLine("4. Load");
             Console.WriteLine("5. Quit");
-            Console.WriteLine("What would you like to do? ");
-            string choiceAnswer = Console.ReadLine();
-            userChoice = int.Parse(choiceAnswer);
-            if (userChoice == 1)
+            Console.Write("What would you like to do?");
+            string choice = Console.ReadLine();
+
+            if (choice == "1")
             {
-                PromptGenerator generator = new PromptGenerator();
-                generator.GetRandomPrompt();
-
-
-                Console.WriteLine(">");
-                string _entryText = Console.ReadLine();
-                Console.WriteLine(_entryText);
-                Entry entry = new Entry();
-                Journal myJournal = new Journal();
-                myJournal._entries.Add(entry);
+                string prompt = promptGenerator.GetRandomPrompt();
+                Console.WriteLine($"\nPrompt: {prompt}");
+                Console.Write("Your response: ");
+                string response = Console.ReadLine();
+                journal.AddEntry(new Entry(prompt, response));
+                Console.WriteLine("Entry saved!\n");
             }
-
-
-            else if (userChoice == 2)
+            else if (choice == "2")
             {
-                Journal written = new Journal();
-                written.DisplayAll();
+                journal.DisplayAll();
             }
-            else if (userChoice == 3)
+            else if (choice == "3")
             {
-                 
+                Console.Write("Enter filename to save journal: ");
+                string saveFile = Console.ReadLine();
+                journal.SaveToFile(saveFile);
             }
-        }
+            else if (choice == "4")
+            {
+                Console.Write("Enter filename to load journal: ");
+                string loadFile = Console.ReadLine();
+                journal.loadFromFile(loadFile);
+            }
+            else if (choice == "5")
+            {
+                return;
+            }
+                         
             
+            
+               
+            
+        }
+                
+                
+            
+            
+            
+            
+                 
+            
+                
+        
+            
+
+            
+        
+
+
+
+
+
+        
+
+
+
+            
+           
+                 
     }
+            
             
 }
             
