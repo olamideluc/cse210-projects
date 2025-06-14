@@ -1,0 +1,4 @@
+eat,just eat,300
+prayer,Pray everyday,50
+temple,attend temple,400
+play,play piano,49

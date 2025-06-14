@@ -1,0 +1,3 @@
+eat,eat everyday,100
+pray,pray everyday,50
+talk at meeting,Attend board meeting ,100
